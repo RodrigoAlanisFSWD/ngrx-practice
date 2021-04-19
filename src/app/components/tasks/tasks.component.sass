@@ -1,0 +1,74 @@
+.form
+  width: 100vw
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 20px
+  &__group
+    @media (max-width: 675px)
+      width: 100%
+    margin-bottom: 20px
+    width: 50%
+  &__input
+    width: 100%
+    padding: 10px
+    border-radius: 3px
+    border: none
+    outline: none
+    transition: all 300ms
+  &__label
+    display: block
+    color: white
+    margin-bottom: 10px
+  &__alert
+    color: white
+    font-size: 0.65rem
+    margin: 10px 0px
+    background: #e23237
+    padding: 10px
+    border-radius: 5px
+  &__btn
+    @media (max-width: 675px)
+      width: 50%
+    padding: 10px
+    width: 20%
+    border-radius: 5px
+    background: #375a7f
+    border: none
+    color: white
+    font-size: 0.8rem
+
+.tasks
+  width: 100vw
+  display: flex
+  align-items: center
+  flex-direction: column
+  padding: 20px
+  &__task
+    @media (max-width: 675px)
+      width: 100%
+    width: 50%
+    background: white
+    padding: 10px
+    border-radius: 5px
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    align-items: center
+    margin: 10px 0px
+    &-title
+      font-size: 1rem
+      font-weight: 300
+    &-is
+      font-size: 0.8rem
+    &-btn
+      padding: 10px
+      width: 90%
+      border: none
+      font-size: 0.6rem
+      border-radius: 5px
+      &--danger
+        background: #e23237
+        color: white
+      &--done
+        background: #444444
+        color: white

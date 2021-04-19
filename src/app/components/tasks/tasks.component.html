@@ -1,20 +1,30 @@
-<form class="form">
+<form class="form" [formGroup]="form" (submit)="create(form.value)">
   <div class="form__group">
     <label class="form__label">Name</label>
-    <input type="text" class="form__input">
-    <div class="form__alert">
-      Alert Error Error!!!!
-    </div>
-  </div>
-  <div class="form__group">
-    <label class="form__label">Description</label>
-    <textarea class="form__input form__input--textarea" cols="30" rows="10"></textarea>
-    <div class="form__alert">
-      Alert Error Error!!!!
+    <input formControlName="name" type="text" class="form__input">
+    <div class="form__alert" *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+      The Name Is Required
     </div>
   </div>
 
-  <button class="form__button">
+  <button [disabled]="!form.valid" class="form__btn">
     Create
   </button>
 </form>
+
+<div class="tasks">
+  <div class="tasks__task" *ngFor="let task of tasks | async">
+    <h3 class="tasks__task-title">
+      {{ task.name }}
+    </h3>
+    <span class="tasks__task-is">
+      Done: {{ task.done ? "Yes" : "No" }}
+    </span>
+    <button (click)="done(task.id)" class="tasks__task-btn tasks__task-btn--done">
+      Done
+    </button>
+    <button (click)="delete(task.id)" class="tasks__task-btn tasks__task-btn--danger">
+      Delete
+    </button>
+  </div>
+</div>

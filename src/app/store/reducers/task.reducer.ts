@@ -1,21 +1,22 @@
 import { Task } from "src/app/models/Task.model";
 import * as TaskActions from '../actions/task.actions';
+import uniqid from 'uniqid';
 
-const initial: Task = {
-  id: null,
-  name: null,
-  description: null,
-  done: false
-}
-
-export function taskReducer(state: Task[] = [initial], action: TaskActions.Actions) {
+export function taskReducer(state: Task[] = [], action: TaskActions.Actions) {
   switch(action.type) {
     case TaskActions.ADD_TASK:
+      localStorage.setItem('tasks', JSON.stringify([...state, action.payload]));
       return [...state, action.payload];
     case TaskActions.DONE_TASK:
-      return state.map(el => el.id === action.payload ? el.done = true : el);
+      const doned = state.map(el => el.id === action.payload ? {...el, done: true} : el);
+      localStorage.setItem('tasks', JSON.stringify(doned));
+      return doned;
     case TaskActions.REMOVE_TASK:
-      return state.filter(el => el.id !== action.payload);
+      const filtered = state.filter(el => el.id !== action.payload);
+      localStorage.setItem('tasks', JSON.stringify(filtered));
+      return filtered;
+    case TaskActions.SET_TASKS:
+      return action.payload;
     default:
       return state;
   }

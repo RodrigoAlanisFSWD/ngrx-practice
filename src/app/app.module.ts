@@ -8,6 +8,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { taskReducer } from './store/reducers/task.reducer';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppRoutingModule,
     StoreModule.forRoot({
       task: taskReducer
-    })
+    }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
